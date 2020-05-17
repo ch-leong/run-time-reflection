@@ -7,7 +7,11 @@ public:
     inline Component*  GetParent() { return m_Parent; }
     inline void        SetParent(Component* parent) { m_Parent = parent; }
     inline auto const& GetVariables() const { return m_Variables; }
+
+    // Currently linear. Well if use a different container, will be different.
     VariableBase* GetVariable(std::string const& name) const;
+
+    // Also linear.
     template <typename T>
     Variable<T>* AddVariable(Variable<T>& variable)
     {
@@ -18,6 +22,8 @@ public:
         VariableBase::AddVariables(m_Variables, variable);
         return Variable<T>(GetVariable(variable.GetName()));
     }
+
+    // Linear~
     bool RemoveVariable(std::string const& name);
 
 protected:
@@ -31,7 +37,7 @@ protected:
     virtual ~Component();
 
     Component* m_Parent;
-    std::vector<std::unique_ptr<VariableBase>> m_Variables;
+    std::vector<std::unique_ptr<VariableBase>> m_Variables; // Can be different container, but need to change in class Variable.
 };
 
 class Transform : public Component
@@ -41,6 +47,7 @@ public:
     virtual ~Transform() {}
 };
 
+// Sample user-class.
 struct Vector3
 {
     float x, y, z;
