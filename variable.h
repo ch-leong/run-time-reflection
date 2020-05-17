@@ -19,9 +19,12 @@ public:
     std::string const& GetType() const { return m_Type; }
     std::string const& GetName() const { return m_Name; }
 
+    // The std container here can be whatever the user required.
+    // Base case.
     static void AddVariables(std::vector<std::unique_ptr<VariableBase>>&)
     {
     }
+    // Recursive case.
     template <typename T, typename ... Ts>
     static void AddVariables(std::vector<std::unique_ptr<VariableBase>>& variables, T const& first, Ts const& ... rest)
     {
