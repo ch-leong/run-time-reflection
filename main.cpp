@@ -1,6 +1,7 @@
 #include <iostream>
 #include "component.h"
 
+// Utility function.
 std::vector<std::string> TokenizeString(std::string const& string)
 {
     std::istringstream iss(string);
