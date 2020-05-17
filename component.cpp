@@ -31,6 +31,7 @@ bool Component::RemoveVariable(std::string const& name)
 
 Transform::Transform(std::string const& name)
     : Component(nullptr
+        // Takes in any type in a parameter pack.
         , Variable<std::string>("Name", name)
         , Variable<unsigned>("ID")
         , Variable<Vector3>("Position")
